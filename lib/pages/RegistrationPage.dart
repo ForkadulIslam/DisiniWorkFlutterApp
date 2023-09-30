@@ -52,6 +52,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 ),
 
                 const SizedBox(height: 15,),
+
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: SocialButton(btnText: 'Continue with Facebook', path: 'lib/images/f_logo.png', onTap: (){}),
