@@ -2,38 +2,42 @@ import 'package:flutter/material.dart';
 
 class SocialButton extends StatelessWidget{
 
-  final Function? onTap;
+  final VoidCallback onPressed;
   final String btnText;
   final String path;
 
-  const SocialButton({super.key, required this.btnText, required this.path,  required this.onTap});
+  const SocialButton({super.key, required this.btnText, required this.path,  required this.onPressed});
 
   @override
   Widget build (BuildContext context){
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-      //margin: EdgeInsets.symmetric(horizontal: 10),
+      width: double.infinity,
       decoration: BoxDecoration(
         color: Color(0xffe7e7e8),
-        borderRadius: BorderRadius.circular(8)
+        borderRadius:BorderRadius.circular(8)
       ),
-      child: Center(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              this.path,
-              height: 30,
-            ),
-            SizedBox(width: 20,),
-            Text(this.btnText,style: TextStyle(
-              color: Color(0xff0f0f10),
-              fontSize: 17
-            ),)
-          ],
+      child: TextButton.icon(
+        onPressed: onPressed,
+        icon: Image.asset(
+          this.path,
+          height: 35,
         ),
-      ),
+        label: Text(
+            btnText,
+            style: TextStyle(
+              color: Color(0xff666666),
+              fontSize: 17
+            ),
+        ),
+        style: TextButton.styleFrom(
+            // shape: RoundedRectangleBorder(
+            //     side: BorderSide(
+            //         color: Color(0xffe7e7e8),
+            //         width: 2
+            //     )
+            // )
+        ),
+      )
     );
   }
 }

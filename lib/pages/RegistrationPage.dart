@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:disiniwork/components/CustomButton.dart';
 import 'package:disiniwork/components/SocialButton.dart';
+import 'package:disiniwork/pages/LoginPage.dart';
 
 class RegistrationPage extends StatefulWidget {
   const RegistrationPage({super.key});
@@ -55,19 +56,19 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: SocialButton(btnText: 'Continue with Facebook', path: 'lib/images/f_logo.png', onTap: (){}),
+                  child: SocialButton(btnText: 'Continue with Facebook', path: 'lib/images/f_logo.png', onPressed: (){}),
                 ),
 
                 const SizedBox(height: 15,),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: SocialButton(btnText: 'Continue with Google', path: 'lib/images/google_logo.png', onTap: (){}),
+                  child: SocialButton(btnText: 'Continue with Google', path: 'lib/images/google_logo.png', onPressed: (){}),
                 ),
 
                 const SizedBox(height: 15,),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: SocialButton(btnText: 'Continue with Apple ID', path: 'lib/images/apple_logo.png', onTap: (){}),
+                  child: SocialButton(btnText: 'Continue with Apple ID', path: 'lib/images/apple_logo.png', onPressed: (){}),
                 ),
 
                 const SizedBox(height: 20,),
@@ -166,7 +167,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: CustomButton(onTap: (){
                     print('test');
-                  },),
+                  },btnText: 'SIGN UP',),
                 ),
                 const SizedBox( height: 10,),
                 Row(
@@ -174,7 +175,18 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text('Already have an account?'),
-                    Text('Login',style: TextStyle(color: Color(0xff2e81ea)),)
+                    InkWell(
+                      onTap: () {
+                        // Add navigation to the login page here
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+                      },
+                      child: Container(
+                        child: Text(
+                          'Login',
+                          style: TextStyle(color: Color(0xff2e81ea)),
+                        ),
+                      ),
+                    )
                   ],
                 ),
                 const SizedBox( height: 20,),
