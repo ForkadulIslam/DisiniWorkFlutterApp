@@ -1,3 +1,4 @@
+import 'package:disiniwork/pages/HomePage.dart';
 import 'package:flutter/material.dart';
 import 'package:disiniwork/components/CustomButton.dart';
 import 'package:disiniwork/components/SocialButton.dart';
@@ -32,12 +33,12 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   size: 90,
                 ),
                 const SizedBox(height: 10,),
-                Text('Create Account',style: TextStyle(
+                const Text('Create Account',style: TextStyle(
                     color: Color(0xFF434242),
                     fontSize: 30
                 )),
                 const SizedBox(height: 10,),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: Align(
                     alignment: Alignment.centerLeft,
@@ -72,7 +73,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 ),
 
                 const SizedBox(height: 20,),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: Row(
                     children: [
@@ -165,8 +166,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 const SizedBox( height: 30,),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: CustomButton(onTap: (){
-                    print('test');
+                  child: CustomButton(onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
                   },btnText: 'SIGN UP',),
                 ),
                 const SizedBox( height: 10,),

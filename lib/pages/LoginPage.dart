@@ -1,7 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:disiniwork/pages/RegistrationPage.dart';
 import 'package:disiniwork/components/CustomButton.dart';
 import 'package:disiniwork/components/SocialButton.dart';
+
+import 'HomePage.dart';
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -17,7 +21,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xfffefeff),
+      backgroundColor: const Color(0xfffefeff),
       body:SafeArea(
           child: SingleChildScrollView(
             child: Center(
@@ -29,12 +33,12 @@ class _LoginPageState extends State<LoginPage> {
                     size: 90,
                   ),
                   const SizedBox(height: 10,),
-                  Text('Login',style: TextStyle(
+                  const Text('Login',style: TextStyle(
                       color: Color(0xFF434242),
                       fontSize: 30
                   )),
                   const SizedBox(height: 10,),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     child: Align(
                       alignment: Alignment.centerLeft,
@@ -52,24 +56,24 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(height: 15,),
 
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: SocialButton(btnText: 'Continue with Facebook', path: 'lib/images/f_logo.png', onPressed: (){}),
                   ),
 
                   const SizedBox(height: 15,),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: SocialButton(btnText: 'Continue with Google', path: 'lib/images/google_logo.png', onPressed: (){}),
                   ),
 
                   const SizedBox(height: 15,),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: SocialButton(btnText: 'Continue with Apple ID', path: 'lib/images/apple_logo.png', onPressed: (){}),
                   ),
 
                   const SizedBox(height: 20,),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     child: Row(
                       children: [
@@ -90,10 +94,10 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 20,),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: TextField(
                       controller: userNameController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Color(0xff8b8b8b))
                           ),
@@ -107,11 +111,11 @@ class _LoginPageState extends State<LoginPage> {
 
                   const SizedBox(height: 10,),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: TextField(
                       controller: passwordController,
                       obscureText: true,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Color(0xff8b8b8b))
                           ),
@@ -123,7 +127,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const SizedBox(height: 5,),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     child: Align(
                       alignment: Alignment.centerRight,
@@ -146,7 +150,7 @@ class _LoginPageState extends State<LoginPage> {
                             });
                           },
                         ),
-                        Text(
+                        const Text(
                           'Remember this device', // Your privacy agreement text
                           style: TextStyle(
                             color: Color(0xff1d1c1c),
@@ -157,9 +161,9 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox( height: 30,),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: CustomButton(onTap: (){
-                      print('test');
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: CustomButton(onPressed: () => {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()))
                     },btnText: 'LOGIN',),
                   ),
                   const SizedBox( height: 10,),
@@ -167,14 +171,14 @@ class _LoginPageState extends State<LoginPage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('Dont have an account?'),
+                      const Text('Dont have an account?'),
                       InkWell(
                         onTap: () {
                           // Add navigation to the login page here
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => RegistrationPage()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const RegistrationPage()));
                         },
                         child: Container(
-                          child: Text(
+                          child: const Text(
                             'Create New',
                             style: TextStyle(color: Color(0xff2e81ea)),
                           ),

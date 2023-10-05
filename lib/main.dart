@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'pages/RegistrationPage.dart';
-import 'pages/LoginPage.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -10,7 +9,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Disini Work',
       debugShowCheckedModeBanner: false,
       home:RegistrationPage(),
