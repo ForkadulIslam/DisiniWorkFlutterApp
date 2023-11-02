@@ -13,18 +13,18 @@ class SocialButton extends StatelessWidget{
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: Color(0xffe7e7e8),
+        color: const Color(0xffe7e7e8),
         borderRadius:BorderRadius.circular(8)
       ),
       child: TextButton.icon(
         onPressed: onPressed,
         icon: Image.asset(
-          this.path,
+          path,
           height: 35,
         ),
         label: Text(
             btnText,
-            style: TextStyle(
+            style: const TextStyle(
               color: Color(0xff666666),
               fontSize: 17
             ),

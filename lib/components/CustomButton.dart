@@ -12,15 +12,15 @@ class CustomButton extends StatelessWidget{
     return Container(
         width: double.infinity,
         decoration: BoxDecoration(
-            color: Color(0xff031a38),
+            color: const Color(0xff031a38),
             borderRadius:BorderRadius.circular(8)
         ),
         child: TextButton.icon(
           onPressed: onPressed,
-          icon: Icon(Icons.login),
+          icon: const Icon(Icons.login),
           label: Text(
             btnText,
-            style: TextStyle(
+            style: const TextStyle(
                 color: Color(0xfffefeff),
                 fontSize: 15
             ),
