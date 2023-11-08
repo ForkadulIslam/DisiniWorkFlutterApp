@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
+
 class SkillBadge extends StatelessWidget {
-  final String skill;
-  const SkillBadge({super.key, required this.skill});
+  final String name;
+  final Function onDelete;
+
+  SkillBadge({required this.name, required this.onDelete});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 23,
-      margin: EdgeInsets.only(right: 8),
-      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      padding: EdgeInsets.symmetric(horizontal: 8,vertical: 8),
       decoration: BoxDecoration(
+        color: Colors.white,
         border: Border.all(color: Color(0xff747474)),
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(20),
       ),
       child: Text(
-        skill,
-        style: const TextStyle(
+        name,
+        style: TextStyle(
           fontFamily: "Inter",
           fontSize: 11,
           fontWeight: FontWeight.w400,
-          color: Color(0xff747474),
         ),
-        textAlign: TextAlign.center,
       ),
     );
   }

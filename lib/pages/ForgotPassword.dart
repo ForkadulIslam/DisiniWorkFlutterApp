@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:disiniwork/components/BuildInputDecoration.dart';
 import 'package:disiniwork/pages/PasswordRessetOtpValidation.dart';
 import 'package:flutter/material.dart';
 
@@ -21,6 +22,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xff031a38),
+      ),
       backgroundColor: const Color(0xfffefeff),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -61,16 +65,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       return null;
                     },
                     controller: emailController,
-                    decoration: const InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Color(0xff8b8b8b))
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Color(0xff8b8b8b))
-                        ),
-                        hintText: 'Your email address'
-                    ),
+                    decoration: buildInputDecoration('Email address', Icons.email_outlined)
                   ),
                 ),
                 const SizedBox(height: 10,),

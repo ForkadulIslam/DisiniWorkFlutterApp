@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:disiniwork/pages/EmailOtpValidation.dart';
 import 'package:disiniwork/pages/HomePage.dart';
 import 'package:disiniwork/pages/LoginPage.dart';
+import 'package:disiniwork/pages/RegistrationPage.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -40,7 +41,7 @@ class _SplashPageState extends State<SplashPage> {
                 return EmailOtpValidation(emailAddress: email ?? 'no email found');
               }
             } else {
-              return const LoginPage();
+              return const RegistrationPage();
             }
           },
         ),

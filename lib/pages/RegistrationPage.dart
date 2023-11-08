@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:disiniwork/components/BuildInputDecoration.dart';
 import 'package:disiniwork/constants.dart';
 import 'package:disiniwork/pages/EmailOtpValidation.dart';
 import 'package:flutter/material.dart';
@@ -64,47 +65,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       ),
                     ),
                   ),
-
-                  const SizedBox(height: 15,),
-
-                  // Padding(
-                  //   padding: EdgeInsets.symmetric(horizontal: 20),
-                  //   child: SocialButton(btnText: 'Continue with Facebook', path: 'lib/images/f_logo.png', onPressed: (){}),
-                  // ),
-                  //
-                  // const SizedBox(height: 15,),
-                  // Padding(
-                  //   padding: EdgeInsets.symmetric(horizontal: 20),
-                  //   child: SocialButton(btnText: 'Continue with Google', path: 'lib/images/google_logo.png', onPressed: (){}),
-                  // ),
-                  //
-                  // const SizedBox(height: 15,),
-                  // Padding(
-                  //   padding: EdgeInsets.symmetric(horizontal: 20),
-                  //   child: SocialButton(btnText: 'Continue with Apple ID', path: 'lib/images/apple_logo.png', onPressed: (){}),
-                  // ),
-                  //
-                  // const SizedBox(height: 20,),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      children: [
-                        Expanded(child: Divider(
-                          thickness: .9,
-                          color: Color(0xff9e9f9f),
-                        )),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 8),
-                          child: Text('OR'),
-                        ),
-                        Expanded(child: Divider(
-                          thickness: .9,
-                          color: Color(0xff9e9f9f),
-                        )),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(height: 20,),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: TextFormField(
@@ -115,16 +76,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         }
                         return null;
                       },
-                      decoration: const InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Color(0xff8b8b8b))
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Color(0xff8b8b8b))
-                        ),
-                        hintText: 'First name'
-                      ),
+                      decoration: buildInputDecoration('First Name', Icons.person_outline),
                     ),
                   ),
                   const SizedBox(height: 10,),
@@ -138,16 +90,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         return null;
                       },
                       controller: lastNameCtrl,
-                      decoration: const InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Color(0xff8b8b8b))
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Color(0xff8b8b8b))
-                        ),
-                        hintText: 'Last name'
-                      ),
+                      decoration: buildInputDecoration('Last Name', Icons.person_outline)
                     ),
                   ),
                   const SizedBox(height: 10,),
@@ -161,16 +104,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         return null;
                       },
                       controller: emailCtrl,
-                      decoration: const InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Color(0xff8b8b8b))
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Color(0xff8b8b8b))
-                        ),
-                        hintText: 'Email'
-                      ),
+                      decoration: buildInputDecoration('Email', Icons.email_outlined)
                     ),
                   ),
                   const SizedBox(height: 10,),
@@ -191,16 +125,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             child: Text(role),
                           );
                         }).toList(),
-                        decoration: const InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Color(0xff8b8b8b)),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Color(0xff8b8b8b)),
-                          ),
-                          hintText: 'Select Role',
-                        ),
+                        decoration: buildInputDecoration('Role', Icons.person_outline),
                         validator: (value) {
                           if (value == null) {
                             return 'Please select a role';
@@ -224,16 +149,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       },
                       controller: passwordCtrl,
                       obscureText: true,
-                      decoration: const InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Color(0xff8b8b8b))
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Color(0xff8b8b8b))
-                        ),
-                        hintText: 'Password'
-                      ),
+                      decoration: buildInputDecoration('Password', Icons.password_outlined)
                     ),
                   ),
                   const SizedBox(height: 10,),
@@ -252,16 +168,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       },
                       controller: confirmPasswordCtrl,
                       obscureText: true,
-                      decoration: const InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Color(0xff8b8b8b))
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Color(0xff8b8b8b))
-                        ),
-                        hintText: 'Confirm Password'
-                      ),
+                      decoration: buildInputDecoration('Confirmed password', Icons.password_outlined)
                     ),
                   ),
                   const SizedBox(height: 5,),

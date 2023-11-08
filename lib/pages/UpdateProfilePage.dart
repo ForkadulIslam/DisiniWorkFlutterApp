@@ -1,16 +1,22 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:disiniwork/components/PortfolioUploader.dart';
+import 'dart:convert';
+
+import 'package:disiniwork/Models/CateogoryModel.dart';
+import 'package:disiniwork/components/CustomButton.dart';
+import 'package:disiniwork/components/SkillBadge.dart';
 import 'package:disiniwork/pages/AddMoreExperience.dart';
 import 'package:disiniwork/pages/AddMorePortfolio.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/rendering.dart';
 
-import '../../ColorSupport.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../Models/SkillModel.dart';
 import '../components/BuildInputDecoration.dart';
 import '../constants.dart';
 import 'package:http/http.dart' as http;
+
+import 'AddMoreSkills.dart';
 
 class UpdateProfilePage extends StatefulWidget {
   const UpdateProfilePage({super.key});
@@ -20,8 +26,8 @@ class UpdateProfilePage extends StatefulWidget {
 
 }
 class _UpdateProfilePageState extends State<UpdateProfilePage> {
-  final GlobalKey _formKey = GlobalKey<FormState>();
-  String? username;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  String? username, fullName, categorySlug;
   TextEditingController firstName = TextEditingController();
   TextEditingController lastName = TextEditingController();
   TextEditingController email = TextEditingController();
@@ -30,6 +36,14 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
   TextEditingController summary = TextEditingController();
 
   late Map<String, dynamic> portfolios;
+
+  CategoryModel? selectedCategory;
+  List<CategoryModel> categories = [];
+
+
+  List<SkillModel> skills = [];
+  bool isLoading = false;
+
 
   @override
   void initState() {
@@ -40,16 +54,55 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
 
   void setDetails() async{
     SharedPreferences pref = await SharedPreferences.getInstance();
-    final String username = pref.getString('username').toString();
+    setState(() {
+      username = pref.getString('username').toString();
+    });
     try{
-      final Uri url = Uri.parse('$apiBaseUrl/');
-      var response = await http.post(url, body: formData);
+      final Uri url = Uri.parse('$apiBaseUrl/getuserdetails/${username}');
+      var response = await http.get(url);
       final Map<String, dynamic> responseData = json.decode(response.body);
+      if(response.statusCode == 200){
+        firstName.text = responseData['data']['first_name'];
+        lastName.text = responseData['data']['last_name'];
+        email.text = pref.getString('email').toString();
+        profession.text = responseData['data']['professional_title'] ?? '';
+        hourlyRate.text = responseData['data']['hourly_rate'] ?? '';
+        summary.text = responseData['data']['overview'] ?? '';
+        setState(() {
+          categorySlug = responseData['data']['category_id'];
+          fullName = responseData['data']['fullname'];
+          skills = (responseData['data']['skills'] as List).map((item){
+            return SkillModel(item['pivot']['skill_id'], item['name'], item['slug'],false);
+          }).toList();
+        });
+      }
     }catch(error){
-      print('Error: ${error}');
+      print('Error from user details: ${error}');
     }
 
+    try{
+      final Uri url = Uri.parse('$apiBaseUrl/getcategories');
+      var response = await http.get(url);
+      final responseData = json.decode(response.body);
+      if(response.statusCode == 200){
+        var _category = (responseData as List).map((item){
+          return CategoryModel(item['id'], item['name'], item['slug']);
+        }).toList();
+        var _selectedCategory = _category.where((element) => element.slug == categorySlug);
+        if(_selectedCategory.length > 0){
+          setState(() {
+            selectedCategory = _selectedCategory.first;
+          });
+        }
+        setState(() {
+          categories = _category;
+        });
+      }
+    }catch(error){
+      print('Error from category: ${error}');
+    }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -116,7 +169,7 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text(
-                              "Kelly Clarkson",
+                              "$fullName",
                               style:TextStyle(
                                 fontFamily: "Inter",
                                 fontSize: 12,
@@ -175,6 +228,7 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      // First name
                       Container(
                         decoration:BoxDecoration(
                             color: Color(0xffffffff)
@@ -194,6 +248,7 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                         ),
                       ),
                       SizedBox(height: 20,),
+                      // Lst Name
                       Container(
                         decoration:BoxDecoration(
                             color: Color(0xffffffff)
@@ -208,10 +263,11 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                           },
                           decoration: buildInputDecoration('Last name', Icons.person_outline),
                           keyboardType: TextInputType.text,
-                          controller: firstName,
+                          controller: lastName,
                         ),
                       ),
                       SizedBox(height: 20,),
+                      // Email
                       Container(
                         decoration:BoxDecoration(
                             color: Color(0xffffffff)
@@ -226,10 +282,11 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                           },
                           decoration: buildInputDecoration('Email', Icons.email_outlined),
                           keyboardType: TextInputType.text,
-                          controller: firstName,
+                          controller: email,
                         ),
                       ),
                       SizedBox(height: 20,),
+                      // Profession
                       Container(
                         decoration:BoxDecoration(
                             color: Color(0xffffffff)
@@ -238,16 +295,56 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                           validator: (value){
                             if(value!.isEmpty){
                               return 'Profession is required';
+                            }else if(value.length < 10){
+                              return 'Value should be more then 10 character';
+                            }else if(value.length < 10){
+                              return 'Value should be more then 10 character';
                             }else{
                               return null;
                             }
                           },
                           decoration: buildInputDecoration('Profession', Icons.book_outlined),
                           keyboardType: TextInputType.text,
-                          controller: firstName,
+                          controller: profession,
                         ),
                       ),
                       SizedBox(height: 20,),
+                      // Category
+                      Container(
+                        width: double.infinity,
+                        height: 55,
+                        decoration:BoxDecoration(
+                            color: Color(0xffffffff)
+                        ),
+                        child: DropdownButtonFormField<CategoryModel>(
+                          validator: (CategoryModel? value) {
+                            if (value == null) {
+                              return 'Category is required';
+                            }
+                            return null; // Return null if the value is valid
+                          },
+                          decoration:buildInputDecoration('Category', Icons.category_outlined),
+                          value: selectedCategory,
+                          onChanged: (CategoryModel? newValue) {
+                            setState(() {
+                              selectedCategory = newValue;
+                              print(jsonEncode(selectedCategory));
+                              if (selectedCategory != null) {
+                                // Here, you can send selectedCategory.slug to the server
+                                //print("Selected Slug: ${selectedCategory!.slug}");
+                              }
+                            });
+                          },
+                          items: categories.map((CategoryModel category) {
+                            return DropdownMenuItem<CategoryModel>(
+                              value: category,
+                              child: Text(category.name),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                      SizedBox(height: 20,),
+                      // Hourly Rate
                       Container(
                         decoration:BoxDecoration(
                             color: Color(0xffffffff)
@@ -262,11 +359,11 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                           },
                           decoration: buildInputDecoration('Hourly rate', Icons.hourglass_empty_outlined),
                           keyboardType: TextInputType.text,
-                          controller: firstName,
+                          controller: hourlyRate,
                         ),
                       ),
                       SizedBox(height: 20,),
-
+                      // Summary
                       Container(
                         decoration:BoxDecoration(
                             color: Color(0xffffffff)
@@ -274,20 +371,24 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                         child: TextFormField(
                           validator: (value){
                             if(value!.isEmpty){
-                              return 'Summary is required';
-                            }else{
+                              return 'Bio is required';
+                            }else if(value.length < 100){
+                              return 'Bio needs to be more the 100 character';
+                            } else{
                               return null;
                             }
                           },
                           decoration: buildInputDecoration('Summary', Icons.text_fields_outlined),
                           keyboardType: TextInputType.text,
-                          controller: firstName,
+                          maxLines: 3,
+                          controller: summary,
                         ),
                       ),
                       SizedBox(height: 20,),
                       Divider(
                         color: Color(0xffa9a9a9),
                       ),
+                      // Skills
                       Column(
                         children: [
                           Row(
@@ -300,6 +401,52 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                               ),
                               IconButton(
                                 icon: Icon(Icons.add, color: Color(0xffff7519)),
+                                onPressed: () async{
+                                  List<SkillModel> _selectedSkills =  await Navigator.push(context, MaterialPageRoute(builder: (context) => AddMoreSkills(selectedSkills: skills,)));
+                                  if (_selectedSkills != null) {
+                                    setState(() {
+                                      skills = _selectedSkills;
+                                    });
+                                  }
+                                },
+                              ),
+                            ],
+                          ),
+                          ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: skills.length,
+                            itemBuilder: (context, index) {
+                              final item = skills[index];
+                              return Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 2),
+                                child: SkillBadge(
+                                  name: item.name,
+                                  onDelete: (itemName) {
+                                    print(itemName);
+                                  },
+                                ),
+                              );
+                            },
+                          )
+                        ],
+                      ),
+                      Divider(
+                        color: Color(0xffa9a9a9),
+                      ),
+
+                      // Portfolio
+                      Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                'PORTFOLIO',
+                                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                              ),
+                              IconButton(
+                                icon: Icon(Icons.add, color: Color(0xffff7519)),
                                 onPressed: () {
                                   Navigator.push(context, MaterialPageRoute(builder: (context) => const AddMorePortfolio()));
                                 },
@@ -307,13 +454,14 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                             ],
                           ),
                           Column(
-                            children: []
+                              children: []
                           ),
                         ],
                       ),
                       Divider(
                         color: Color(0xffa9a9a9),
                       ),
+                      // Experience
                       Column(
                         children: [
                           Row(
@@ -340,6 +488,75 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                         ],
                       ),
 
+                      Divider(
+                        color: Color(0xffa9a9a9),
+                      ),
+                      SizedBox(height: 30,),
+                      if (isLoading)
+                        Center(
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(Color(0xff031a38)), // Change this to your desired color
+                            strokeWidth: 2,
+                          ),
+                        ),
+                      const SizedBox(height: 10,),
+                      Container(
+                        height: 60,
+                        child: CustomButton(
+                          onPressed: () async{
+                            setState(() {
+                              isLoading = true;
+                            });
+                            if(_formKey.currentState!.validate()){
+                              try{
+                                SharedPreferences pref = await SharedPreferences.getInstance();
+                                String token = pref.getString('token').toString();
+                                Map<String, dynamic> formData = {
+                                  'overview':summary.text,
+                                  'hourly_rate' : hourlyRate.text,
+                                  'category_id' : selectedCategory!.slug,
+                                  'professional_title' : profession.text,
+                                };
+                                var response = await http.post(
+                                  Uri.parse('$apiBaseUrl/updatebio'),
+                                  body: formData,
+                                  headers: {
+                                    'Authorization': 'Bearer $token',
+                                  },
+                                );
+                                final List<int> skillIds = skills.map((skill) => skill.id).toList();
+                                final Map<String, dynamic> skillFormData = {
+                                  "selectedSkills": skillIds,
+                                };
+
+                                final String skillDataJson = jsonEncode(skillFormData);
+                                final saveSkillResponse = await http.post(
+                                  Uri.parse('$apiBaseUrl/addSelectedSkills'),
+                                  headers: {
+                                    'Authorization': 'Bearer $token',
+                                    'Content-Type': 'application/json', // Set the content type to JSON
+                                  },
+                                  body: skillDataJson, // Send JSON data
+                                );
+                                print(saveSkillResponse.body);
+                                Map<String, dynamic> res = json.decode(saveSkillResponse.body);
+
+                                if(saveSkillResponse.statusCode == 200){
+                                  _showSuccessDialog('Profile request is successful');
+                                }
+                              }catch(error){
+                                print('Profile update error: $error');
+                                _showSuccessDialog('$error');
+                              }
+                            }
+                            setState(() {
+                              isLoading = false;
+                            });
+                          },
+                          btnText: 'UPDATE PROFILE',
+                        ),
+                      ),
+                      SizedBox(height: 20,),
                     ],
                   ),
                 )
@@ -349,6 +566,29 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
           ),
         ),
       ),
+    );
+  }
+
+  void _showSuccessDialog(String msg) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Action successful', style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
+          content: Text(msg, style: TextStyle(fontSize: 16.0)),
+          actions: [
+            TextButton(
+              child: const Text('OK', style: TextStyle(fontSize: 16.0, color: Colors.blue),),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16.0),
+          ),
+        );
+      },
     );
   }
 }

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:disiniwork/constants.dart';
 import 'package:disiniwork/pages/HomePage.dart';
+import 'package:disiniwork/pages/LoginPage.dart';
 import 'package:disiniwork/pages/RegistrationPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
@@ -24,6 +25,30 @@ class _EmailOtpValidationState extends State<EmailOtpValidation> {
   String? serverMessage;
   bool isLoading = false;
   String? finalVeryficationCode;
+
+  void _showSuccessDialog() {
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Validation is successful', style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
+          content: const Text('Redirecting back to login page', style: TextStyle(fontSize: 16.0)),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('OK', style: TextStyle(fontSize: 16.0, color: Colors.blue),),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
+              },
+            ),
+          ],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16.0),
+          ),
+        );
+      },
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -224,20 +249,7 @@ class _EmailOtpValidationState extends State<EmailOtpValidation> {
                           serverMessage = responseData['msg'];
                         });
 
-                        Future.delayed(const Duration(seconds: 2),() async{
-                          SharedPreferences prefs = await SharedPreferences.getInstance();
-                          prefs.remove('token');
-                          prefs.remove('email');
-                          prefs.remove('email_verified_at');
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return const HomePage();
-                              },
-                            ),
-                          );
-                        });
+                        _showSuccessDialog();
 
                       }else{
                         print(responseData);

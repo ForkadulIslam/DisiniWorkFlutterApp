@@ -112,7 +112,7 @@ class ProjectItemCard extends StatelessWidget {
                   itemCount: skills.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Center(
-                      child: SkillBadge(skill: skills[index]),
+                      //child: //SkillBadge(skill: skills[index]),
                     );
                   },
                 ),

@@ -32,7 +32,7 @@ class _AddMorePortfolioState extends State<AddMorePortfolio> {
 
   Future<void> _uploadData() async {
     print('Clicked');
-    return;
+    //return;
     // Implement the logic to upload data (title, description, and image) to the server here
     if (image != null) {
       // You can use the http package to send data to the server
@@ -138,7 +138,7 @@ class _AddMorePortfolioState extends State<AddMorePortfolio> {
                           width: double.infinity,
                           child: CustomButton(
                             onPressed: _uploadData,
-                            btnText: 'ADD SKILL',
+                            btnText: 'ADD PORTFOLIO',
                           ),
                         )
                       ],

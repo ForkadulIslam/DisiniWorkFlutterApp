@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:disiniwork/components/BuildInputDecoration.dart';
 import 'package:disiniwork/constants.dart';
 import 'package:disiniwork/pages/EmailOtpValidation.dart';
 import 'package:disiniwork/pages/ForgotPassword.dart';
@@ -114,16 +115,7 @@ class _LoginPageState extends State<LoginPage> {
                           return null;
                         },
                         controller: emailController,
-                        decoration: const InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xff8b8b8b))
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xff8b8b8b))
-                          ),
-                          hintText: 'Email for login'
-                        ),
+                        decoration: buildInputDecoration('Email', Icons.email_outlined)
                       ),
                     ),
                     const SizedBox(height: 10,),
@@ -138,16 +130,7 @@ class _LoginPageState extends State<LoginPage> {
                         },
                         controller: passwordController,
                         obscureText: true,
-                        decoration: const InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xff8b8b8b))
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xff8b8b8b))
-                          ),
-                          hintText: 'Password'
-                        ),
+                        decoration: buildInputDecoration('Password', Icons.password_outlined)
                       ),
                     ),
                     const SizedBox(height: 5,),
