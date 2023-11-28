@@ -1,8 +1,9 @@
 class ProjectDataModel {
   late String title, description, projectType;
-  late int noOfProposal;
-  late double price;
+  late String noOfProposal;
+  late String price;
   late String skills;
+  late String slug;
   late String publishedAt;
   ProjectDataModel({
     required this.title,
@@ -10,6 +11,7 @@ class ProjectDataModel {
     required this.projectType,
     required this.noOfProposal,
     required this.price,
+    required this.slug,
     required this.skills,
     required this.publishedAt
   });

@@ -9,7 +9,8 @@ class SkillBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 8,vertical: 8),
+      padding: EdgeInsets.symmetric(horizontal: 8,vertical: 4),
+      margin: EdgeInsets.symmetric(horizontal: 2),
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border.all(color: Color(0xff747474)),
@@ -19,7 +20,7 @@ class SkillBadge extends StatelessWidget {
         name,
         style: TextStyle(
           fontFamily: "Inter",
-          fontSize: 11,
+          fontSize: 10,
           fontWeight: FontWeight.w400,
         ),
       ),

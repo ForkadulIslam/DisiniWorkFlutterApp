@@ -9,9 +9,10 @@ class ProjectItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<String> skills = project.skills.split(',');
-    print(skills.length);
+    //print(skills.length);
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 22),
+      width: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -91,8 +92,7 @@ class ProjectItemCard extends StatelessWidget {
           Text(
             '${project.description}',
             style: const TextStyle(
-              fontFamily: "Inter",
-              fontSize: 11,
+              fontSize: 12,
               fontWeight: FontWeight.w400,
               color: Color(0xff000000),
             ),
@@ -102,28 +102,31 @@ class ProjectItemCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: MainAxisSize.max,
             children: [
               Container(
-                width: MediaQuery.of(context).size.width*0.8,
+                width: MediaQuery.of(context).size.width*.8,
                 height: 25,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: skills.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Center(
-                      //child: //SkillBadge(skill: skills[index]),
+                      child: SkillBadge(name: skills[index],onDelete: (){
+                        print('Clicked on badge');
+                      }),
                     );
                   },
                 ),
               )
             ],
           ),
+          SizedBox(height: 5,),
           Divider(
             thickness: 1,
             color: Color(0xffdddddd),
           ),
-          SizedBox(height: 20,)
+          SizedBox(height: 10,)
         ],
       ),
     );
