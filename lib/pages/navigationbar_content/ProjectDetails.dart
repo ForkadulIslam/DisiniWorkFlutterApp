@@ -22,11 +22,15 @@ class _ProjectDetailsState extends State<ProjectDetails> {
       ..setBackgroundColor(const Color(0x00000000))
       ..setNavigationDelegate(
         NavigationDelegate(
+
           onProgress: (int progress) {
+
           },
+
           onPageStarted: (String url) {
 
           },
+
           onPageFinished: (String url) {
             setState(() {
               progressVisibility = false;
@@ -52,8 +56,7 @@ class _ProjectDetailsState extends State<ProjectDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Project Details'),
-        backgroundColor: Color(0xff031a38),
+        backgroundColor: Color(0xffe8ecf1),
       ),
       body: SafeArea(
           child:Container(

@@ -17,7 +17,7 @@ class CustomButton extends StatelessWidget{
         ),
         child: TextButton.icon(
           onPressed: onPressed,
-          icon: const Icon(Icons.login, color: Color(0xff031a38),),
+          icon: const Icon(Icons.login, color: Color(0xff031a38),weight: 900,),
           label: Text(
             btnText,
             style: const TextStyle(

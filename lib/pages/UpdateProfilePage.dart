@@ -70,6 +70,7 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
       final Uri url = Uri.parse('$apiBaseUrl/getuserdetails/$username');
       var response = await http.get(url);
       final Map<String, dynamic> responseData = json.decode(response.body);
+      print(username);
       if(response.statusCode == 200){
         firstName.text = responseData['data']['first_name'];
         lastName.text = responseData['data']['last_name'];
@@ -210,7 +211,7 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                           ),
                           child: ClipOval(
                             child: Image.network(
-                              'https://s3-alpha-sig.figma.com/img/496c/95c4/25fa5984f82805fb652f48c0ba21f7d4?Expires=1699228800&Signature=e5MDVR~sUTKnwrX3fIczqtqZ7ccsdWwxenxCz9pa90B6gvsOGpcLte67p4Z91GNxZMARWWRc-CJ6AIgYHiR4IYaoSbwg6CGERxPnhCCUi-uKh8De9uiY~i0pPGQw1yWhg~anoOQsplJUxPJ8UEYsBjsNORk3n~ZV401eCmzwj7qZVdfWu9pHjqRuQRfQ6TMz0d-F6VAhV67YTO293gapPtOf7QpMvPF2PLfBis1sP0I0ysfHbqzmq4MJBN6kGyrQm35JdptjGbCsgPFLPgpPTnnI0NfnrzMYj~UxHFEhgHPbGEQ7ZvF8VNUNy5rbSBchZ8OFO7QSbSjxs01bBbYAwA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
+                              'https://api.disiniwork.com/uploads/profiles/avatar.jpg',
                               fit: BoxFit.cover,
                               loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
                                 if (loadingProgress == null) {
@@ -893,7 +894,6 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                               try{
                                 SharedPreferences pref = await SharedPreferences.getInstance();
                                 String token = pref.getString('token').toString();
-
                                 Map<String, dynamic> formData = {
                                   'overview':summary.text,
                                   'hourly_rate' : hourlyRate.text,
@@ -984,7 +984,10 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
             borderRadius: BorderRadius.circular(16.0),
           ),
         );
+
       },
     );
   }
 }
+
+

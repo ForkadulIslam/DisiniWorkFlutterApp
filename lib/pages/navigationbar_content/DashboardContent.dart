@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../SplashPage.dart';
+import '../UpdateProfilePage.dart';
 class DashboardContent extends StatefulWidget {
   const DashboardContent({super.key});
 
@@ -106,11 +107,13 @@ class _DashboardContentState extends State<DashboardContent> {
                             ),
                             Row(
                               children: [
-                                Text(
-                                  '02 Days only for 1 projects',
-                                  style: TextStyle(fontSize: 12, color: Color(0xffc3c9d0)),
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 2,
+                                Expanded(
+                                  child: Text(
+                                    '02 Days only for 1 projects',
+                                    style: TextStyle(fontSize: 12, color: Color(0xffc3c9d0)),
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 1,
+                                  ),
                                 )
                               ],
                             )
@@ -176,11 +179,13 @@ class _DashboardContentState extends State<DashboardContent> {
                             ),
                             Row(
                               children: [
-                                Text(
-                                  '02 Days only for 1 projects',
-                                  style: TextStyle(fontSize: 12, color: Color(0xffc3c9d0)),
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 2,
+                                Expanded(
+                                  child: Text(
+                                    '02 Days only for 1 projects',
+                                    style: TextStyle(fontSize: 12, color: Color(0xffc3c9d0)),
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 1,
+                                  ),
                                 )
                               ],
                             )
@@ -205,432 +210,8 @@ class _DashboardContentState extends State<DashboardContent> {
               ),
             ),
             const SizedBox(height: 20,),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(
-                      width: 70,
-                      height: 120,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          SizedBox(
-                            width: 70,
-                            height: 70,
-                            child: Card(
-                                color: Color(0xffffffff),
-                                elevation: 4.0,
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Icon(Icons.brush_outlined,color: Color(0xfff9671e),size: 40,),
-                                )
-                            ),
-                          ),
-                          SizedBox(height: 5,),
-                          ClipRect(
-                            child: Text(
-                              'Design and creative art',
-                              style: TextStyle(fontSize: 11),
-                              softWrap: true,
-                              maxLines: 3,
-                              overflow: TextOverflow.fade,
-                              textAlign: TextAlign.center, // Center-align the text
-                              textScaleFactor: 1.0, // Prevent text from scaling
-                            ),
-                          ),
-                        ],
-                      )
-                  ),
-                  SizedBox(
-                      width: 70,
-                      height: 120,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          SizedBox(
-                            width: 70,
-                            height: 70,
-                            child: Card(
-                                color: Color(0xffffffff),
-                                elevation: 4.0,
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Icon(Icons.code_outlined,color: Color(0xfff9671e),size: 40,),
-                                )
-                            ),
-                          ),
-                          SizedBox(height: 5,),
-                          ClipRect(
-                            child: Text(
-                              'Programming & Development',
-                              style: TextStyle(fontSize: 11),
-                              softWrap: true,
-                              maxLines: 3,
-                              overflow: TextOverflow.fade,
-                              textAlign: TextAlign.center, // Center-align the text
-                              textScaleFactor: 1.0, // Prevent text from scaling
-                            ),
-                          ),
-                        ],
-                      )
-                  ),
-                  SizedBox(
-                      width: 70,
-                      height: 120,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          SizedBox(
-                            width: 70,
-                            height: 70,
-                            child: Card(
-                                color: Color(0xffffffff),
-                                elevation: 4.0,
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Icon(Icons.book_outlined,color: Color(0xfff9671e),size: 40,),
-                                )
-                            ),
-                          ),
-                          SizedBox(height: 5,),
-                          ClipRect(
-                            child: Text(
-                              'Content creation & writing',
-                              style: TextStyle(fontSize: 11),
-                              softWrap: true,
-                              maxLines: 3,
-                              overflow: TextOverflow.fade,
-                              textAlign: TextAlign.center, // Center-align the text
-                              textScaleFactor: 1.0, // Prevent text from scaling
-                            ),
-                          ),
-                        ],
-                      )
-                  ),
-                  SizedBox(
-                      width: 70,
-                      height: 120,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          SizedBox(
-                            width: 70,
-                            height: 70,
-                            child: Card(
-                                color: Color(0xffffffff),
-                                elevation: 4.0,
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Icon(Icons.campaign_outlined,color: Color(0xfff9671e),size: 40,),
-                                )
-                            ),
-                          ),
-                          SizedBox(height: 5,),
-                          ClipRect(
-                            child: Text(
-                              'Digital marketing',
-                              style: TextStyle(fontSize: 11),
-                              softWrap: true,
-                              maxLines: 3,
-                              overflow: TextOverflow.fade,
-                              textAlign: TextAlign.center, // Center-align the text
-                              textScaleFactor: 1.0, // Prevent text from scaling
-                            ),
-                          ),
-                        ],
-                      )
-                  ),
-
-                ],
-              ),
-            ),
-            const SizedBox(height: 5,),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(
-                      width: 70,
-                      height: 120,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          SizedBox(
-                            width: 70,
-                            height: 70,
-                            child: Card(
-                                color: Color(0xffffffff),
-                                elevation: 4.0,
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Icon(Icons.translate_outlined,color: Color(0xfff9671e),size: 40,),
-                                )
-                            ),
-                          ),
-                          SizedBox(height: 5,),
-                          ClipRect(
-                            child: Text(
-                              'Translate & Language',
-                              style: TextStyle(fontSize: 11),
-                              softWrap: true,
-                              maxLines: 3,
-                              overflow: TextOverflow.fade,
-                              textAlign: TextAlign.center, // Center-align the text
-                              textScaleFactor: 1.0, // Prevent text from scaling
-                            ),
-                          ),
-                        ],
-                      )
-                  ),
-                  SizedBox(
-                      width: 70,
-                      height: 120,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          SizedBox(
-                            width: 70,
-                            height: 70,
-                            child: Card(
-                                color: Color(0xffffffff),
-                                elevation: 4.0,
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Icon(Icons.assistant,color: Color(0xfff9671e),size: 40,),
-                                )
-                            ),
-                          ),
-                          SizedBox(height: 5,),
-                          ClipRect(
-                            child: Text(
-                              'Virtual Assistant',
-                              style: TextStyle(fontSize: 11),
-                              softWrap: true,
-                              maxLines: 3,
-                              overflow: TextOverflow.fade,
-                              textAlign: TextAlign.center, // Center-align the text
-                              textScaleFactor: 1.0, // Prevent text from scaling
-                            ),
-                          ),
-                        ],
-                      )
-                  ),
-                  SizedBox(
-                      width: 70,
-                      height: 120,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          SizedBox(
-                            width: 70,
-                            height: 70,
-                            child: Card(
-                                color: Color(0xffffffff),
-                                elevation: 4.0,
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Icon(Icons.perm_media_outlined,color: Color(0xfff9671e),size: 40,),
-                                )
-                            ),
-                          ),
-                          SizedBox(height: 5,),
-                          ClipRect(
-                            child: Text(
-                              'Video & Audio',
-                              style: TextStyle(fontSize: 11),
-                              softWrap: true,
-                              maxLines: 3,
-                              overflow: TextOverflow.fade,
-                              textAlign: TextAlign.center, // Center-align the text
-                              textScaleFactor: 1.0, // Prevent text from scaling
-                            ),
-                          ),
-                        ],
-                      )
-                  ),
-                  SizedBox(
-                      width: 70,
-                      height: 120,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          SizedBox(
-                            width: 70,
-                            height: 70,
-                            child: Card(
-                                color: Color(0xffffffff),
-                                elevation: 4.0,
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Icon(Icons.cast_for_education_outlined,color: Color(0xfff9671e),size: 40,),
-                                )
-                            ),
-                          ),
-                          SizedBox(height: 5,),
-                          ClipRect(
-                            child: Text(
-                              'Education & Training',
-                              style: TextStyle(fontSize: 11),
-                              softWrap: true,
-                              maxLines: 3,
-                              overflow: TextOverflow.fade,
-                              textAlign: TextAlign.center, // Center-align the text
-                              textScaleFactor: 1.0, // Prevent text from scaling
-                            ),
-                          ),
-                        ],
-                      )
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 5,),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(
-                      width: 70,
-                      height: 120,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          SizedBox(
-                            width: 70,
-                            height: 70,
-                            child: Card(
-                                color: Color(0xffffffff),
-                                elevation: 4.0,
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Icon(Icons.health_and_safety_outlined,color: Color(0xfff9671e),size: 40,),
-                                )
-                            ),
-                          ),
-                          SizedBox(height: 5,),
-                          ClipRect(
-                            child: Text(
-                              'Health & Wellness',
-                              style: TextStyle(fontSize: 11),
-                              softWrap: true,
-                              maxLines: 3,
-                              overflow: TextOverflow.fade,
-                              textAlign: TextAlign.center, // Center-align the text
-                              textScaleFactor: 1.0, // Prevent text from scaling
-                            ),
-                          ),
-                        ],
-                      )
-                  ),
-                  SizedBox(
-                      width: 70,
-                      height: 120,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          SizedBox(
-                            width: 70,
-                            height: 70,
-                            child: Card(
-                                color: Color(0xffffffff),
-                                elevation: 4.0,
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Icon(Icons.point_of_sale_outlined,color: Color(0xfff9671e),size: 40,),
-                                )
-                            ),
-                          ),
-                          SizedBox(height: 5,),
-                          ClipRect(
-                            child: Text(
-                              'Sales & Marketing',
-                              style: TextStyle(fontSize: 11),
-                              softWrap: true,
-                              maxLines: 3,
-                              overflow: TextOverflow.fade,
-                              textAlign: TextAlign.center, // Center-align the text
-                              textScaleFactor: 1.0, // Prevent text from scaling
-                            ),
-                          ),
-                        ],
-                      )
-                  ),
-                  SizedBox(
-                      width: 70,
-                      height: 120,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          SizedBox(
-                            width: 70,
-                            height: 70,
-                            child: Card(
-                                color: Color(0xffffffff),
-                                elevation: 4.0,
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Icon(Icons.event_note_outlined,color: Color(0xfff9671e),size: 40,),
-                                )
-                            ),
-                          ),
-                          SizedBox(height: 5,),
-                          ClipRect(
-                            child: Text(
-                              'Event & Cordination',
-                              style: TextStyle(fontSize: 11),
-                              softWrap: true,
-                              maxLines: 3,
-                              overflow: TextOverflow.fade,
-                              textAlign: TextAlign.center, // Center-align the text
-                              textScaleFactor: 1.0, // Prevent text from scaling
-                            ),
-                          ),
-                        ],
-                      )
-                  ),
-                  SizedBox(
-                      width: 70,
-                      height: 120,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          SizedBox(
-                            width: 70,
-                            height: 70,
-                            child: Card(
-                                color: Color(0xffffffff),
-                                elevation: 4.0,
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Icon(Icons.low_priority_outlined,color: Color(0xfff9671e),size: 40,),
-                                )
-                            ),
-                          ),
-                          SizedBox(height: 5,),
-                          ClipRect(
-                            child: Text(
-                              'Legal & Financial',
-                              style: TextStyle(fontSize: 11),
-                              softWrap: true,
-                              maxLines: 3,
-                              overflow: TextOverflow.fade,
-                              textAlign: TextAlign.center, // Center-align the text
-                              textScaleFactor: 1.0, // Prevent text from scaling
-                            ),
-                          ),
-                        ],
-                      )
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 5,),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: EdgeInsets.symmetric(horizontal: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -640,57 +221,147 @@ class _DashboardContentState extends State<DashboardContent> {
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          InkWell(
-                            onTap:() async{
-                              SharedPreferences prefs = await SharedPreferences.getInstance();
-                              prefs.remove('token');
-                              prefs.remove('email');
-                              prefs.remove('email_verified_at');
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(builder: (BuildContext ctx) => const SplashPage())
-                              );
-                            },
-                            child: const SizedBox(
-                              width: 70,
-                              height: 70,
+                          SizedBox(
+                            width: 70,
+                            height: 70,
+                            child: InkWell(
+                              onTap: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => const UpdateProfilePage()));
+                              },
                               child: Card(
                                   color: Color(0xffffffff),
                                   elevation: 4.0,
                                   child: Align(
                                     alignment: Alignment.center,
-                                    child: Icon(Icons.logout_outlined,color: Color(0xfff9671e),size: 40,),
+                                    child: Icon(Icons.person,color: Color(0xfff9671e),size: 40,),
                                   )
                               ),
                             ),
                           ),
-                          const SizedBox(height: 5,),
-                          ClipRect(
+                          SizedBox(height: 5,),
+
+                          Flexible(
                             child: InkWell(
-                              onTap:() async{
-                                SharedPreferences prefs = await SharedPreferences.getInstance();
-                                prefs.remove('token');
-                                prefs.remove('email');
-                                prefs.remove('email_verified_at');
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(builder: (BuildContext ctx) => const SplashPage())
-                                );
+                              onTap: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => const UpdateProfilePage()));
                               },
-                              child: const Text(
-                                'LOGOUT',
+                              child: Text(
+                                'PROFILE',
                                 style: TextStyle(fontSize: 11),
                                 softWrap: true,
                                 maxLines: 3,
                                 overflow: TextOverflow.fade,
                                 textAlign: TextAlign.center, // Center-align the text
-                                textScaleFactor: 1.0, // Prevent text from scaling
                               ),
-                            ),
+                            )
                           ),
                         ],
                       )
                   ),
+                  // SizedBox(
+                  //     width: 70,
+                  //     height: 120,
+                  //     child: Column(
+                  //       mainAxisSize: MainAxisSize.max,
+                  //       children: [
+                  //         SizedBox(
+                  //           width: 70,
+                  //           height: 70,
+                  //           child: InkWell(
+                  //             onTap: (){
+                  //               Navigator.push(context, MaterialPageRoute(builder: (context) => const UpdateProfilePage()));
+                  //             },
+                  //             child: Card(
+                  //                 color: Color(0xffffffff),
+                  //                 elevation: 4.0,
+                  //                 child: Align(
+                  //                   alignment: Alignment.center,
+                  //                   child: Icon(Icons.settings,color: Color(0xfff9671e),size: 40,),
+                  //                 )
+                  //             ),
+                  //           ),
+                  //         ),
+                  //         SizedBox(height: 5,),
+                  //         Flexible(
+                  //           child: Text(
+                  //             'Programming & Development',
+                  //             style: TextStyle(fontSize: 11),
+                  //             softWrap: true,
+                  //             maxLines: 2,
+                  //             overflow: TextOverflow.fade,
+                  //             textAlign: TextAlign.center, // Center-align the text
+                  //           ),
+                  //         ),
+                  //       ],
+                  //     )
+                  // ),
+                  // SizedBox(
+                  //     width: 70,
+                  //     height: 120,
+                  //     child: Column(
+                  //       mainAxisSize: MainAxisSize.max,
+                  //       children: [
+                  //         SizedBox(
+                  //           width: 70,
+                  //           height: 70,
+                  //           child: Card(
+                  //               color: Color(0xffffffff),
+                  //               elevation: 4.0,
+                  //               child: Align(
+                  //                 alignment: Alignment.center,
+                  //                 child: Icon(Icons.book_outlined,color: Color(0xfff9671e),size: 40,),
+                  //               )
+                  //           ),
+                  //         ),
+                  //         SizedBox(height: 5,),
+                  //         Flexible(
+                  //           child: Text(
+                  //             'Content creation & writing',
+                  //             style: TextStyle(fontSize: 11),
+                  //             softWrap: true,
+                  //             maxLines: 2,
+                  //             overflow: TextOverflow.fade,
+                  //             textAlign: TextAlign.center, // Center-align the text
+                  //             textScaleFactor: 1.0, // Prevent text from scaling
+                  //           ),
+                  //         ),
+                  //       ],
+                  //     )
+                  // ),
+                  // SizedBox(
+                  //     width: 70,
+                  //     height: 120,
+                  //     child: Column(
+                  //       mainAxisSize: MainAxisSize.max,
+                  //       children: [
+                  //         SizedBox(
+                  //           width: 70,
+                  //           height: 70,
+                  //           child: Card(
+                  //               color: Color(0xffffffff),
+                  //               elevation: 4.0,
+                  //               child: Align(
+                  //                 alignment: Alignment.center,
+                  //                 child: Icon(Icons.campaign_outlined,color: Color(0xfff9671e),size: 40,),
+                  //               )
+                  //           ),
+                  //         ),
+                  //         SizedBox(height: 5,),
+                  //         Flexible(
+                  //           child: Text(
+                  //             'Digital marketing',
+                  //             style: TextStyle(fontSize: 11),
+                  //             softWrap: true,
+                  //             maxLines: 2,
+                  //             overflow: TextOverflow.fade,
+                  //             textAlign: TextAlign.center, // Center-align the text
+                  //             textScaleFactor: 1.0, // Prevent text from scaling
+                  //           ),
+                  //         ),
+                  //       ],
+                  //     )
+                  // ),
+
                 ],
               ),
             ),

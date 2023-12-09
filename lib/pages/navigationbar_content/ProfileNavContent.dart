@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:disiniwork/pages/UpdateProfilePage.dart';
+import 'package:disiniwork/pages/navigationbar_content/ProjectDetails.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../ColorSupport.dart';
 
@@ -160,12 +162,10 @@ class _ProfileNavContentState extends State<ProfileNavContent> {
             _buildListItem("Payment", Icons.payment, (){
 
             }),
-            _buildListItem("Withdrawal", Icons.money, (){
+            _buildListItem("Withdrawal", Icons.money, () async{
 
             }),
-            _buildListItem("Help", Icons.help, (){
 
-            }),
           ],
         ),
       ),

@@ -214,12 +214,12 @@ class _BrowseProjectContentState extends State<BrowseProjectContent> {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () async{
-                    // SharedPreferences pref = await SharedPreferences.getInstance();
-                    // String token = pref.getString('token').toString();
-                    // String slug = projects[index].slug;
-                    // String url = 'https://disiniwork.com/jobs/$slug?appkey=${token}';
-                    // //print(url);
-                    // Navigator.push(context, MaterialPageRoute(builder: (context) => ProjectDetails(url: projects[index].slug)));
+                    SharedPreferences pref = await SharedPreferences.getInstance();
+                    String token = pref.getString('token').toString();
+                    String slug = projects[index].slug;
+                    String url = 'https://disiniwork.com/jobs/$slug?appkey=${token}';
+                    print(url);
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => ProjectDetails(url: url)));
                   },
                   child: ProjectItemCard(project: projects[index]),
                 );
