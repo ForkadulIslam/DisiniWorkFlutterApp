@@ -153,18 +153,18 @@ class _ProfileNavContentState extends State<ProfileNavContent> {
             _buildListItem("Profile", Icons.person,(){
               Navigator.push(context, MaterialPageRoute(builder: (context) => const UpdateProfilePage()));
             }),
-            _buildListItem("Settings", Icons.settings, (){
-
-            }),
-            _buildListItem("Verification", Icons.verified_user, (){
-
-            }),
-            _buildListItem("Payment", Icons.payment, (){
-
-            }),
-            _buildListItem("Withdrawal", Icons.money, () async{
-
-            }),
+            // _buildListItem("Settings", Icons.settings, (){
+            //
+            // }),
+            // _buildListItem("Verification", Icons.verified_user, (){
+            //
+            // }),
+            // _buildListItem("Payment", Icons.payment, (){
+            //
+            // }),
+            // _buildListItem("Withdrawal", Icons.money, () async{
+            //
+            // }),
 
           ],
         ),

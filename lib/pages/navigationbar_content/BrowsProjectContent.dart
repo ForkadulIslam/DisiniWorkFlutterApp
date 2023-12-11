@@ -50,7 +50,7 @@ class _BrowseProjectContentState extends State<BrowseProjectContent> {
       final Uri url = Uri.parse('$apiBaseUrl/getcategories');
       var response = await http.get(url);
       final responseData = json.decode(response.body);
-      print(responseData);
+      //print(responseData);
       if(response.statusCode == 200){
         var _category = (responseData as List).map((item){
           return CategoryModel(item['id'], item['name'], item['slug']);
@@ -66,7 +66,7 @@ class _BrowseProjectContentState extends State<BrowseProjectContent> {
         });
       }
     }catch(error){
-      print('Error from category: ${error}');
+      //print('Error from category: ${error}');
     }
   }
   getProject() async{
@@ -92,7 +92,7 @@ class _BrowseProjectContentState extends State<BrowseProjectContent> {
       );
       if(response.statusCode == 200){
         Map<String, dynamic> jsonResponse = jsonDecode(response.body);
-        print(jsonResponse);
+        //print(jsonResponse);
         var _projects = (jsonResponse['data'] as List).map((item){
           List<dynamic> _skills = item['skills'];
           String skillString = _skills.map((skill) => skill['name']).join(', ');
@@ -119,7 +119,7 @@ class _BrowseProjectContentState extends State<BrowseProjectContent> {
         });
       }
     }catch(error){
-      print('Error: $error');
+      //print('Error: $error');
     }
   }
   int? extractNextPage(String? nextLink) {
@@ -218,7 +218,7 @@ class _BrowseProjectContentState extends State<BrowseProjectContent> {
                     String token = pref.getString('token').toString();
                     String slug = projects[index].slug;
                     String url = 'https://disiniwork.com/jobs/$slug?appkey=${token}';
-                    print(url);
+                    //print(url);
                     Navigator.push(context, MaterialPageRoute(builder: (context) => ProjectDetails(url: url)));
                   },
                   child: ProjectItemCard(project: projects[index]),

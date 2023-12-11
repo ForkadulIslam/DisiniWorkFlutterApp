@@ -38,11 +38,11 @@ class _ProjectDetailsState extends State<ProjectDetails> {
           },
 
           onWebResourceError: (WebResourceError error) {
-            print(error);
+            //print(error);
           },
 
           onNavigationRequest: (NavigationRequest request) {
-            print('Navigation:'+request.url.toString());
+            //print('Navigation:'+request.url.toString());
             if (request.url.startsWith('https://www.youtube.com/')) {
               return NavigationDecision.prevent;
             }
