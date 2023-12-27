@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../PhoneNumberVeryfy.dart';
 import '../SplashPage.dart';
 import '../UpdateProfilePage.dart';
 class DashboardContent extends StatefulWidget {
@@ -254,6 +255,117 @@ class _DashboardContentState extends State<DashboardContent> {
                                 textAlign: TextAlign.center, // Center-align the text
                               ),
                             )
+                          ),
+                        ],
+                      )
+                  ),
+                  SizedBox(
+                      width: 70,
+                      height: 120,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          SizedBox(
+                            width: 70,
+                            height: 70,
+                            child: InkWell(
+                              onTap: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => const PhoneNumberVerify()));
+                              },
+                              child: Card(
+                                  color: Color(0xffffffff),
+                                  elevation: 4.0,
+                                  child: Align(
+                                    alignment: Alignment.center,
+                                    child: Icon(Icons.mobile_off_outlined,color: Color(0xfff9671e),size: 40,),
+                                  )
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 5,),
+
+                          Flexible(
+                              child: InkWell(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => const UpdateProfilePage()));
+                                },
+                                child: Text(
+                                  'MOBILE VERYFY',
+                                  style: TextStyle(fontSize: 11),
+                                  softWrap: true,
+                                  maxLines: 3,
+                                  overflow: TextOverflow.fade,
+                                  textAlign: TextAlign.center, // Center-align the text
+                                ),
+                              )
+                          ),
+                        ],
+                      )
+                  ),
+                  SizedBox(
+                      width: 70,
+                      height: 120,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          SizedBox(
+                            width: 70,
+                            height: 70,
+                            child: InkWell(
+                              onTap: () async {
+                                // Get an instance of SharedPreferences
+                                final prefs = await SharedPreferences.getInstance();
+                                // Clear the stored values
+                                prefs.remove('token');
+                                prefs.remove('email');
+                                prefs.remove('username');
+                                prefs.remove('email_verified_at');
+
+                                // You can also use prefs.clear() to remove all key-value pairs
+                                 prefs.clear();
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => SplashPage()),
+                                );
+                              },
+                              child: Card(
+                                  color: Color(0xffffffff),
+                                  elevation: 4.0,
+                                  child: Align(
+                                    alignment: Alignment.center,
+                                    child: Icon(Icons.logout,color: Color(0xfff9671e),size: 40,),
+                                  )
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 5,),
+
+                          Flexible(
+                              child: InkWell(
+                                onTap: () async{
+                                  final prefs = await SharedPreferences.getInstance();
+                                  // Clear the stored values
+                                  prefs.remove('token');
+                                  prefs.remove('email');
+                                  prefs.remove('username');
+                                  prefs.remove('email_verified_at');
+
+                                  // You can also use prefs.clear() to remove all key-value pairs
+                                  prefs.clear();
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => SplashPage()),
+                                  );
+                                },
+                                child: Text(
+                                  'LOGOUT',
+                                  style: TextStyle(fontSize: 11),
+                                  softWrap: true,
+                                  maxLines: 3,
+                                  overflow: TextOverflow.fade,
+                                  textAlign: TextAlign.center, // Center-align the text
+                                ),
+                              )
                           ),
                         ],
                       )

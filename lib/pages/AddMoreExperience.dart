@@ -35,7 +35,7 @@ class _AddMoreExperienceState extends State<AddMoreExperience> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Add Experience'),
-        backgroundColor: Color(0xff031a38),
+        backgroundColor: Color(0xffF85301),
       ),
       body: SafeArea(
         child: SingleChildScrollView(

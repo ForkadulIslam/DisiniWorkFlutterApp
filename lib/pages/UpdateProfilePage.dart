@@ -68,9 +68,10 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
     });
     try{
       final Uri url = Uri.parse('$apiBaseUrl/getuserdetails/$username');
+      print(url);
       var response = await http.get(url);
       final Map<String, dynamic> responseData = json.decode(response.body);
-      print(username);
+
       if(response.statusCode == 200){
         firstName.text = responseData['data']['first_name'];
         lastName.text = responseData['data']['last_name'];

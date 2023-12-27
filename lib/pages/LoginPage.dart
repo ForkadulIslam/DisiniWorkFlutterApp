@@ -64,24 +64,7 @@ class _LoginPageState extends State<LoginPage> {
 
                     const SizedBox(height: 15,),
 
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: SocialButton(btnText: 'Continue with Facebook', path: 'lib/images/f_logo.png', onPressed: (){}),
-                    ),
 
-                    const SizedBox(height: 15,),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: SocialButton(btnText: 'Continue with Google', path: 'lib/images/google_logo.png', onPressed: (){}),
-                    ),
-
-                    const SizedBox(height: 15,),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: SocialButton(btnText: 'Continue with Apple ID', path: 'lib/images/apple_logo.png', onPressed: (){}),
-                    ),
-
-                    const SizedBox(height: 20,),
                     const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Row(
