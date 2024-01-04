@@ -4,6 +4,8 @@ import 'package:disiniwork/pages/navigationbar_content/DashboardContent.dart';
 import 'package:disiniwork/pages/navigationbar_content/ProfileNavContent.dart';
 import 'package:flutter/material.dart';
 
+import 'navigationbar_content/MyProjectContent.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -21,7 +23,7 @@ class _HomePageState extends State<HomePage> {
     const DashboardContent(), // Replace with your actual pages
     const DashboardContent(),
     const BrowseProjectContent(),
-    const DashboardContent(),
+    const MyProjectContent(),
     const ProfileNavContent(),
   ];
   void _onItemTapped(int index) {
