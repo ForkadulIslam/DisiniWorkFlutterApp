@@ -4,6 +4,7 @@ import 'package:disiniwork/components/BuildInputDecoration.dart';
 import 'package:disiniwork/constants.dart';
 import 'package:disiniwork/pages/EmailOtpValidation.dart';
 import 'package:disiniwork/pages/ForgotPassword.dart';
+import 'package:disiniwork/pages/SplashPage.dart';
 import 'package:flutter/material.dart';
 import 'package:disiniwork/pages/RegistrationPage.dart';
 import 'package:disiniwork/components/CustomButton.dart';
@@ -189,7 +190,7 @@ class _LoginPageState extends State<LoginPage> {
                                 if(responseData['data']['email_verified_at'] == null){
                                   Navigator.push(context, MaterialPageRoute(builder: (context) => EmailOtpValidation(emailAddress: responseData['data']['email'])));
                                 }else{
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => const SplashPage()));
                                 }
                               }
                             }else{

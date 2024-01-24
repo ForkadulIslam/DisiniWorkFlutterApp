@@ -270,7 +270,7 @@ class _DashboardContentState extends State<DashboardContent> {
                             height: 70,
                             child: InkWell(
                               onTap: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => const PhoneNumberVerify()));
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => PhoneNumberVerify()));
                               },
                               child: Card(
                                   color: Color(0xffffffff),

@@ -17,7 +17,6 @@ class _HomePageState extends State<HomePage> {
 
   int _selectedIndex = 0;
   final PageController _pageController = PageController(initialPage: 0);
-
   // Create a list of pages
   final List<Widget> _pages = [
     const DashboardContent(), // Replace with your actual pages

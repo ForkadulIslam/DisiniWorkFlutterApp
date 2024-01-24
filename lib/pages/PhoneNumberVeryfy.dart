@@ -29,6 +29,7 @@ class _PhoneNumberVerifyState extends State<PhoneNumberVerify> {
   String phoneNumber = '';
   int currentStep = 1;
   bool isLoading = false;
+  String? errorMessage;
 
   @override
   void initState() {
@@ -61,6 +62,7 @@ class _PhoneNumberVerifyState extends State<PhoneNumberVerify> {
   }
 
   void startTimer() {
+    timerDuration = 120;
     timer = Timer.periodic(Duration(seconds: 1), (Timer t) {
       setState(() {
         if (timerDuration > 0) {
@@ -69,6 +71,8 @@ class _PhoneNumberVerifyState extends State<PhoneNumberVerify> {
           int seconds = timerDuration % 60;
           timerText = '$minutes:${seconds.toString().padLeft(2, '0')}';
         } else {
+          errorMessage = null;
+          isLoading = false;
           timer.cancel();
           timerText = 'Time Expired';
           isTimerActive = false;
@@ -113,6 +117,7 @@ class _PhoneNumberVerifyState extends State<PhoneNumberVerify> {
                     initialValue: PhoneNumber(isoCode: initialCountry),
                   ),
                   SizedBox(height: 24.0),
+                  if(errorMessage != null)  Text(errorMessage!),
                   !isLoading ? CustomButton(
                     onPressed: () async {
                       setState(() {
@@ -120,6 +125,9 @@ class _PhoneNumberVerifyState extends State<PhoneNumberVerify> {
                       });
                       if (!isTimerActive) {
                         try {
+                          setState(() {
+                            errorMessage = null;
+                          });
                           SharedPreferences pref = await SharedPreferences.getInstance();
                           String token = pref.getString('token').toString();
                           Map<String, dynamic> formData = {
@@ -144,8 +152,9 @@ class _PhoneNumberVerifyState extends State<PhoneNumberVerify> {
                           } else {
                             setState(() {
                               isLoading = false;
+                              errorMessage = responseData['errors']['phone'][0];
                             });
-                            print('Server error ${responseData}');
+                            print('Server error ${responseData['errors']['phone'][0]}');
                           }
                         } catch (error) {
                           setState(() {
@@ -185,10 +194,15 @@ class _PhoneNumberVerifyState extends State<PhoneNumberVerify> {
                     decoration: InputDecoration(labelText: 'Enter OTP'),
                   ),
                   SizedBox(height: 24.0),
+
+                  if(errorMessage != null)  Text(errorMessage!),
                   CustomButton(
                     onPressed: () async{
 
                       try {
+                        setState(() {
+                          errorMessage = null;
+                        });
                         SharedPreferences pref = await SharedPreferences.getInstance();
                         String token = pref.getString('token').toString();
                         Map<String, dynamic> formData = {
@@ -206,10 +220,20 @@ class _PhoneNumberVerifyState extends State<PhoneNumberVerify> {
                         final responseData = json.decode(response.body);
                         if (response.statusCode == 200) {
                           // Handle success, e.g., navigate to the next screen
-                          print('OTP submitted successfully');
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return const HomePage();
+                              },
+                            ),
+                          );
                           // Add any additional logic or navigation here
                         } else {
-                          print('Server error ${responseData}');
+                          setState(() {
+                            errorMessage = responseData['errors']['errors'];
+                          });
+                          print('Server error ${responseData['errors']['errors']}');
                           // Handle the error, e.g., show an error message to the user
                         }
                       } catch (error) {
